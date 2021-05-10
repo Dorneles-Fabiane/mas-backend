@@ -5,7 +5,6 @@ import { User } from "../models/User";
 
 import authConfig from '../config/auth';
 
-
 interface AuthData {
   email: string;
   password: string;
@@ -13,6 +12,7 @@ interface AuthData {
 
 class AuthenticatesUserService {
   public async execute({email, password}: AuthData): Promise <String | {}> {
+    
     const usersRepository = getRepository(User);
 
     const user = await usersRepository.findOne({email});
@@ -31,9 +31,10 @@ class AuthenticatesUserService {
       }
     }
 
-    const { secret, expiresIn } = authConfig.jwt
+    const { privateKey, expiresIn } = authConfig.jwt;
 
-    const token = sign({"role":"user"}, secret, {
+    const token = sign({"role":"user"}, privateKey, {
+      algorithm: 'RS256',
       subject: user.id,
       expiresIn
     });

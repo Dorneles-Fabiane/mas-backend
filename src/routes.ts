@@ -1,14 +1,11 @@
 import { Router } from 'express';
+
 import { ActivityController } from './controller/ActivityController';
 import { CourseUnitController } from './controller/CourseUnitController';
-import { UserController } from './controller/UserController';
 import { AuthenticatesController }from './controller/AuthenticatesController';
+import { UserController } from './controller/UserController';
 
-interface UserRequest {
-    name: string;
-    email: string;
-    password: string;
-}
+import authenticated from './middlewares/authenticated';
 
 const userController = new UserController();
 const activityController = new ActivityController();
@@ -17,14 +14,14 @@ const authenticatesController = new AuthenticatesController();
 
 const routes = Router();
 
-routes.get('/user', () => console.log("User route accessed"));
-routes.post('/auth', authenticatesController.create);
 routes.post('/user', userController.create);
+routes.get('/user', authenticated, userController.show);
 
+routes.post('/auth', authenticatesController.create);
+
+routes.post('/activity', authenticated, activityController.create);
 routes.get('/activity', () => console.log("Activity route accessed"));
-routes.post('/activity', activityController.create);
 
-routes.get('/courseunit', () => console.log("Course Unit route accessed"));
-routes.post('/courseunit', courseUnitController.create);
+routes.post('/courseunit', authenticated, courseUnitController.create);
 
 export default routes;
