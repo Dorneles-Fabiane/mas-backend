@@ -7,7 +7,7 @@ class ActivityController {
 
     const createActivity = new CreateActivityService();
 
-    const activity = await createActivity.execute(activityData);
+    const activity = createActivity.execute(activityData);
 
     return response.json(activity);
   }

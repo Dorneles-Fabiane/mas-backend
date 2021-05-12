@@ -19,8 +19,7 @@ routes.get('/user', authenticated, userController.show);
 
 routes.post('/auth', authenticatesController.create);
 
-routes.post('/activity', authenticated, activityController.create);
-routes.get('/activity', () => console.log("Activity route accessed"));
+routes.post('/activity', activityController.create);
 
 routes.post('/courseunit', authenticated, courseUnitController.create);
 
