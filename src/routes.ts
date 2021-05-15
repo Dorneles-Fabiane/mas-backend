@@ -14,13 +14,14 @@ const authenticatesController = new AuthenticatesController();
 
 const routes = Router();
 
-routes.post('/user', userController.create);
-routes.get('/user', authenticated, userController.show);
-
 routes.post('/auth', authenticatesController.create);
 
-routes.post('/activity', activityController.create);
+routes.get('/user', authenticated, userController.show);
+routes.get('/courseunit', authenticated, courseUnitController.show);
+routes.get('/activity', authenticated, activityController.show);
 
+routes.post('/user', userController.create);
 routes.post('/courseunit', authenticated, courseUnitController.create);
+routes.post('/activity', authenticated, activityController.create);
 
 export default routes;
