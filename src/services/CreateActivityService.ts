@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 
 import { Activity } from '../models/Activity';
+import { CourseUnit } from '../models/CourseUnit';
 
 interface ActivityData {
   name: string;
