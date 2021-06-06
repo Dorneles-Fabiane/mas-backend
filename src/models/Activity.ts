@@ -22,12 +22,15 @@ class Activity {
   activity_date: Date;
   
   @Column()
-  course_unit_id: string;
+  courseUnitId: string;
+
+  @Column()
+  grade: number;
 
   @CreateDateColumn()
   created_at: Date;
 
-  @JoinColumn({ name: "course_unit_id" })
+  @JoinColumn({ name: "courseUnitId" })
   @ManyToOne(() => CourseUnit)
   course_unit: CourseUnit;
 }
