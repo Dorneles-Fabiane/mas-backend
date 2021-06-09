@@ -15,8 +15,8 @@ class CourseUnitController {
   }
 
   async show(request: Request, response: Response) {
-    const userID = request.body.user;
-
+    const userID = request.body.user;                                               
+ 
     const getCourseUnits = new GetCourseUnitsServices();
 
     const courseUnits = await getCourseUnits.execute(userID);
